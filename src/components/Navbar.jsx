@@ -4,9 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-gray-800 shadow-sm">
@@ -136,9 +138,12 @@ export default function Navbar() {
             <Link href="/auth/signin" className="block text-blue-600">
               Login
             </Link>
-            <Button as={Link} href="/auth/signup" className="w-full">
-              Register
-            </Button>
+            <Link
+                href="/auth/signup" className="block text-blue-600">
+              Login
+                
+              </Link>
+            
           </div>
         </div>
       )}
