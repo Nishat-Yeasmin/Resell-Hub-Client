@@ -1,29 +1,46 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
 import { ArrowRight, ShoppingCart, Plus } from "@gravity-ui/icons";
 import Image from "next/image";
 
 export default function Banner() {
+   const [statistics, setStatistics] = useState({
+    totalUsers: 0,
+    totalProducts: 0,
+    totalOrders: 0,
+    completedOrders: 0,
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:5000/statistics")
+      .then((res) => res.json())
+      .then((data) => setStatistics(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   const stats = [
     {
-      number: "5000+",
+      number: statistics.totalProducts,
       label: "Products",
     },
     {
-      number: "1200+",
-      label: "Sellers",
+      number: statistics.totalUsers,
+      label: "Users",
     },
     {
-      number: "3500+",
-      label: "Buyers",
-    },
-    {
-      number: "1800+",
+      number: statistics.totalOrders,
       label: "Orders",
     },
+    {
+      number: statistics.completedOrders,
+      label: "Completed",
+    },
   ];
+
+  
 
   return (
     <section className="bg-gradient-to-b from-gray-700 to-gray-900">

@@ -40,7 +40,7 @@ export default function SigninPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/auth/signin/email", {
+      const res = await fetch("/api/auth/sign-in/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

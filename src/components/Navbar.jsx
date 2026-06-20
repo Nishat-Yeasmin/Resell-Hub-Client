@@ -3,13 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+const {data:session, isPending} = useSession()
+console.log("session data is navbar: ",session, "is pending: ", isPending)
+const user = session?.user;
+const handleSignOut = async()=>{
+  await signOut();
+}
   return (
     <nav className="sticky top-0 z-50 border-b bg-gray-800 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -68,13 +74,22 @@ export default function Navbar() {
             <div className="h-5 w-px bg-gray-300" />
 
             {/* Login / Register */}
-            <Link href="/auth/signin" className="text-sm text-blue-600">
+           {
+            user ?
+             <>
+             Hi, {user.name}!
+             <Button onClick={handleSignOut} variant="ghost">Sign Out</Button>
+            </>:
+             <Link href="/auth/signin" className="text-sm text-blue-600">
               Login
             </Link>
+           }
 
-            <Button as={Link} href="/auth/signup" size="sm" color="primary">
-              Register
-            </Button>
+           <Link href="/auth/signup">
+  <Button size="sm" color="primary">
+    Register
+  </Button>
+</Link>
 
             {/* Profile Dropdown */}
             <div className="relative bg-gray-800">
@@ -138,12 +153,11 @@ export default function Navbar() {
             <Link href="/auth/signin" className="block text-blue-600">
               Login
             </Link>
-            <Link
-                href="/auth/signup" className="block text-blue-600">
-              Login
-                
-              </Link>
-            
+           <Link href="/auth/signup">
+  <Button size="sm" color="primary">
+    Register
+  </Button>
+</Link>
           </div>
         </div>
       )}
