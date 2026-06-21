@@ -57,6 +57,8 @@ export default function AddProductPage() {
     setLoading(false);
   };
 
+
+
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
@@ -88,7 +90,7 @@ export default function AddProductPage() {
         {/* Category */}
         <select
           name="category"
-          className="w-full border p-3 rounded"
+          className="w-full border p-3 rounded bg-black cursor-pointer"
           required
         >
           <option value="">
@@ -115,14 +117,15 @@ export default function AddProductPage() {
         {/* Condition */}
         <select
           name="condition"
-          className="w-full border p-3 rounded"
+          className="w-full border p-3 rounded bg-black cursor-pointer"
           required
         >
           <option value="">
             Select Condition
           </option>
 
-          <option value="Used">
+          
+            <option value="Used">
             Used
           </option>
 
@@ -133,6 +136,7 @@ export default function AddProductPage() {
           <option value="Refurbished">
             Refurbished
           </option>
+        
         </select>
 
         {/* Price */}
@@ -165,7 +169,7 @@ export default function AddProductPage() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-black text-white px-6 py-3 rounded"
+          className="bg-black text-white px-6 py-3 rounded cursor-pointer"
         >
           {loading
             ? "Adding..."
