@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import {useSession} from "@/lib/auth-client";
 import {
     FileText,
@@ -38,17 +39,22 @@ const recruiterStats = [
 
 
 const SellerDashboardHomePage = () => {
-    const {data:session,isPending} = useSession();
+   const { data: session, isPending } = useSession();
 
-    if(isPending){
-        return <div>Loading...</div>
-    }
+  if (isPending) return <div>Loading...</div>;
 
-    const user = session?.user;
+  if (!session) return <div>Please Login</div>;
+
+  if (session.user.role !== "seller") {
+    return <div>Access Denied</div>;
+  }
+
+
+    
 
     return (
         <div>
-            <h1 className='text-4xl font-semibold'>Welcome Back, {user?.name}</h1>
+            <h1 className='text-4xl font-semibold'>Welcome Back, {session?.user?.name}</h1>
 
               {/* Stats Cards */}
             <DashboardStats statsData={recruiterStats}></DashboardStats>

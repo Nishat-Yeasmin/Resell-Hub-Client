@@ -15,30 +15,34 @@ import {
 } from "@gravity-ui/icons";
 
 import { Button, Drawer } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
+export default function DashboardSidebar() {
+  const { data: session } = useSession();
 
-export default function DashboardSidebar({ role }) {
+  const role = session?.user?.role || "buyer";
+
   const buyerMenu = [
-    { icon: House, href: "/dashboard", label: "Dashboard" },
-    { icon: ShoppingCart, href: "/dashboard/my-orders", label: "My Orders" },
-    { icon: Heart, href: "/dashboard/wishlist", label: "Wishlist" },
-    { icon: Envelope, href: "/dashboard/payments", label: "Payments" },
-    { icon: Person, href: "/dashboard/profile", label: "Profile" },
+    { icon: House, href: "/dashboard/buyer", label: "Dashboard" },
+    { icon: ShoppingCart, href: "/dashboard/buyer/orders", label: "My Orders" },
+    { icon: Heart, href: "/dashboard/buyer/wishlist", label: "Wishlist" },
+    { icon: Envelope, href: "/dashboard/buyer/payments", label: "Payments" },
+    { icon: Person, href: "/dashboard/buyer/profile", label: "Profile" },
   ];
 
   const sellerMenu = [
-    { icon: House, href: "/dashboard", label: "Dashboard" },
-    { icon: Briefcase, href: "/dashboard/add-product", label: "Add Product" },
-    { icon: ShoppingBasket, href: "/dashboard/my-products", label: "My Products" },
-    { icon: ShoppingCart, href: "/dashboard/manage-orders", label: "Orders" },
-    { icon: ChartColumn, href: "/dashboard/analytics", label: "Analytics" },
+    { icon: House, href: "/dashboard/seller", label: "Dashboard" },
+    { icon: Briefcase, href: "/dashboard/seller/add-products", label: "Add Product" },
+    { icon: ShoppingBasket, href: "/dashboard/seller/my-products", label: "My Products" },
+    { icon: ShoppingCart, href: "/dashboard/seller/manage-orders", label: "Orders" },
+    { icon: ChartColumn, href: "/dashboard/seller/analytics", label: "Analytics" },
   ];
 
   const adminMenu = [
-    { icon: House, href: "/dashboard", label: "Dashboard" },
-    { icon: Persons, href: "/dashboard/users", label: "Users" },
-    { icon: ShoppingBasket, href: "/dashboard/products", label: "Products" },
-    { icon: ShoppingCart, href: "/dashboard/orders", label: "Orders" },
-    { icon: ChartColumn, href: "/dashboard/analytics", label: "Analytics" },
+    { icon: House, href: "/dashboard/admin", label: "Dashboard" },
+    { icon: Persons, href: "/dashboard/admin/users", label: "Users" },
+    { icon: ShoppingBasket, href: "/dashboard/admin/products", label: "Products" },
+    { icon: ShoppingCart, href: "/dashboard/admin/orders", label: "Orders" },
+    { icon: ChartColumn, href: "/dashboard/admin/analytics", label: "Analytics" },
   ];
 
   let navItems = buyerMenu;
@@ -54,7 +58,7 @@ export default function DashboardSidebar({ role }) {
             <Link
               key={item.label}
               href={item.href}
-              className="flex items-center gap-3 p-2 rounded hover:bg-gray-100"
+              className="flex items-center gap-3 p-2 rounded hover:bg-gray-800"
             >
               <item.icon className="w-5 h-5" />
               {item.label}

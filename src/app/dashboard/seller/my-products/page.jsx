@@ -1,14 +1,15 @@
 "use client";
 
-import { Prompt } from "next/font/google";
-import { useEffect, useState } from "react";
 
+import { useEffect, useState } from "react";
+import { useSession } from "@/lib/auth-client";
 export default function MyProducts() {
 
   const [products, setProducts] = useState([]);
 const [category, setCategory] = useState("");
 const [condition, setCondition] = useState("");
 const [search, setSearch] = useState("");
+const { data: session } = useSession();
 
 useEffect(() => {
   const url = `http://localhost:5000/products?search=${search}&category=${category}&condition=${condition}`;
@@ -17,6 +18,8 @@ useEffect(() => {
     .then((res) => res.json())
     .then((data) => setProducts(data));
 }, [search, category, condition]);
+
+
 
 const handleDelete = async (id) => {
   const confirmDelete = confirm(
@@ -47,6 +50,7 @@ const handleEdit = async (product) => {
     stock: newStock ? Number(newStock) : product.stock,
   };
 
+
   await fetch(`http://localhost:5000/products/${product._id}`, {
     method: "PATCH",
     headers: {
@@ -60,6 +64,23 @@ const handleEdit = async (product) => {
       p._id === product._id ? { ...p, ...updatedData } : p
     )
   );
+};
+
+const addToWishlist = async (product) => {
+  await fetch("http://localhost:5000/wishlist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productId: product._id,
+      title: product.title,
+      image: product.image,
+      price: product.price,
+      userId: session.user.id,
+    }),
+  });
+    alert("Added to wishlist");
 };
 
   return (
@@ -120,16 +141,23 @@ const handleEdit = async (product) => {
 
            <button
   onClick={() => handleEdit(product)}
-  className="bg-blue-900 text-white px-3 py-1 rounded mt-2 mx-2"
+  className="bg-blue-900 text-white px-3 py-1 rounded mt-2 mx-2 cursor-pointer"
 >
   Edit
 </button>
 
             <button
   onClick={() => handleDelete(product._id)}
-  className="bg-red-500 text-white px-3 py-1 rounded mt-2"
+  className="bg-red-500 text-white px-3 py-1 rounded mt-2 cursor-pointer"
 >
   Delete
+</button>
+
+<button
+  onClick={() => addToWishlist(product)}
+  className="bg-pink-600 text-white px-3 py-1 rounded mt-2 mx-2 cursor-pointer"
+>
+  Wishlist
 </button>
 
           </div>

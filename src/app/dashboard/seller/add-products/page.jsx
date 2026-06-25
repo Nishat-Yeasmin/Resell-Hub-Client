@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "@/lib/auth-client";
 
 export default function AddProductPage() {
   const [loading, setLoading] = useState(false);
+const { data: session } = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +24,9 @@ export default function AddProductPage() {
       description: form.description.value,
 
       sellerInfo: {
-        userId: "seller123",
-        name: "Nusrat Jahan",
-        email: "nusrat@gmail.com",
+        userId: session?.user?.id,
+  name: session?.user?.name,
+  email: session?.user?.email,
       },
 
       status: "available",

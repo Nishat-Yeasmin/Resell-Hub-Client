@@ -1,25 +1,24 @@
 import { NextResponse } from "next/server";
-import { jwtVerify } from "jose";
 
-export async function middleware(req) {
-  const token = req.cookies.get("token")?.value;
+export function middleware(req) {
+  const path = req.nextUrl.pathname;
+  const role = req.cookies.get("role")?.value;
 
-  if (!token) {
-    return NextResponse.redirect(new URL("/login", req.url));
+  if (path.startsWith("/dashboard/admin") && role !== "admin") {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  try {
-    await jwtVerify(
-      token,
-      new TextEncoder().encode(process.env.JWT_SECRET)
-    );
-
-    return NextResponse.next();
-  } catch (err) {
-    return NextResponse.redirect(new URL("/login", req.url));
+  if (path.startsWith("/dashboard/seller") && role !== "seller") {
+    return NextResponse.redirect(new URL("/", req.url));
   }
+
+  if (path.startsWith("/dashboard/buyer") && role !== "buyer") {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+console.log("MIDDLEWARE RUNNING:", req.nextUrl.pathname);
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: [ ],
 };

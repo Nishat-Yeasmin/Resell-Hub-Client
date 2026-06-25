@@ -1,5 +1,5 @@
 import BuyNowButton from "@/components/BuyNowButton";
-import clientPromise from "@/lib/mongo";
+
 import { ObjectId } from "mongodb";
 
 export default async function ProductDetails({ params }) {
