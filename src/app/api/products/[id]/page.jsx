@@ -1,3 +1,4 @@
+import BuyNowButton from "@/components/BuyNowButton";
 import clientPromise from "@/lib/mongo";
 import { ObjectId } from "mongodb";
 
@@ -46,6 +47,7 @@ export default async function ProductDetails({ params }) {
       <p className="font-bold text-green-600">
         ${product.price}
       </p>
+      <BuyNowButton product={product}/>
     </div>
   );
 }

@@ -52,11 +52,39 @@ export default function SigninPage() {
       });
 
       const data = await res.json();
-
       if (!res.ok) {
         setError(data.message || "Signin failed");
         return;
       }
+
+
+      const sessionRes = await fetch(
+  "/api/auth/get-session"
+);
+
+const sessionData = await sessionRes.json();
+
+const jwtRes = await fetch(
+  "http://localhost:5000/jwt",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: sessionData.user.email,
+      role: sessionData.user.role,
+    }),
+  }
+);
+
+const jwtData = await jwtRes.json();
+
+localStorage.setItem(
+  "access-token",
+  jwtData.token
+);
+
 
       setSuccess("Login successful");
 
