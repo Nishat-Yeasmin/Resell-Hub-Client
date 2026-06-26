@@ -3,24 +3,33 @@ import BuyNowButton from "@/components/BuyNowButton";
 import { ObjectId } from "mongodb";
 
 export default async function ProductDetails({ params }) {
-  const client = await clientPromise;
-  const db = client.db(process.env.AUTH_DB_NAME);
 
-  let product = null;
+     const res = await fetch(
+    `http://localhost:5000/products/${params.id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
-  try {
-    product = await db
-      .collection("products")
-      .findOne({ _id: new ObjectId(params.id) });
-  } catch (error) {
-    return (
-      <div className="p-6 text-red-500">
-        Invalid product ID
-      </div>
-    );
-  }
+  const product = await res.json();
+//   const client = await clientPromise;
+//   const db = client.db(process.env.AUTH_DB_NAME);
 
-  if (!product) {
+//   let product = null;
+
+//   try {
+//     product = await db
+//       .collection("products")
+//       .findOne({ _id: new ObjectId(params.id) });
+//   } catch (error) {
+//     return (
+//       <div className="p-6 text-red-500">
+//         Invalid product ID
+//       </div>
+//     );
+//   }
+
+  if (!product?._id) {
     return (
       <div className="p-6">
         <h2 className="text-xl font-bold">Product not found</h2>
