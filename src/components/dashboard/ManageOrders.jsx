@@ -92,7 +92,7 @@ const ManageOrders = () => {
                 </td>
 
                 <td>
-
+                  <div className="flex items-center gap-2">
                   <select
                     className="select select-bordered select-sm"
                     value={order.orderStatus}
@@ -124,7 +124,13 @@ const ManageOrders = () => {
                     </option>
 
                   </select>
-
+                    <button
+      className="btn btn-outline btn-sm"
+      onClick={() => alert("Dispute resolved successfully!")}
+    >
+      Resolve
+    </button>
+</div>
                 </td>
 
               </tr>
