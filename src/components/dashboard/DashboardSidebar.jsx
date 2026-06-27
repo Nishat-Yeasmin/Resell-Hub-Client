@@ -40,8 +40,8 @@ export default function DashboardSidebar() {
   const adminMenu = [
     { icon: House, href: "/dashboard/admin", label: "Dashboard" },
     { icon: Persons, href: "/dashboard/admin/users", label: "Manage Users" },
-    { icon: ShoppingBasket, href: "/dashboard/admin/products", label: "Products" },
-    { icon: ShoppingCart, href: "/dashboard/admin/orders", label: "Orders" },
+    { icon: ShoppingBasket, href: "/dashboard/admin/products", label: "Manage Products" },
+    { icon: ShoppingCart, href: "/dashboard/admin/orders", label: "Manage Orders" },
     { icon: ChartColumn, href: "/dashboard/admin/analytics", label: "Analytics" },
   ];
 

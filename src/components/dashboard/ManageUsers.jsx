@@ -92,6 +92,7 @@ const ManageUsers = () => {
               <th  className="px-6 py-4 text-left">Role</th>
               <th  className="px-6 py-4 text-left">Status</th>
               <th  className="px-6 py-4 text-center">Actions</th>
+              
             </tr>
 
           </thead>
