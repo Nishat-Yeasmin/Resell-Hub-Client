@@ -35,7 +35,7 @@ const { data: session } = useSession();
 
     try {
       const res = await fetch(
-        "http://localhost:5000/products",
+        `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products`,
         {
           method: "POST",
           headers: {

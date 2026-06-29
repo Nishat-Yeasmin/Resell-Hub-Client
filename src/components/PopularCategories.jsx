@@ -11,7 +11,7 @@ export default function PopularCategories() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("http://localhost:5000/categories");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/categories`);
         const data = await res.json();
         setCategories(data || []);
       } catch (err) {

@@ -20,7 +20,7 @@ console.log("USER ID:", session?.user?.id);
   if (!userId) return;
 
   fetch(
-    `http://localhost:5000/payments?userId=${userId}`
+    `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/payments?userId=${userId}`
   )
     .then((res) => res.json())
     .then((data) => {

@@ -28,7 +28,7 @@ const [open, setOpen] = useState(false);
 
   const viewOrder = async (id) => {
   const res = await fetch(
-    `http://localhost:5000/orders/${id}`
+    `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/orders/${id}`
   );
 
   const data = await res.json();
@@ -44,7 +44,7 @@ const [open, setOpen] = useState(false);
 
   try {
     const res = await fetch(
-      `http://localhost:5000/orders/${id}/cancel`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/orders/${id}/cancel`,
       {
         method: "PATCH",
       }

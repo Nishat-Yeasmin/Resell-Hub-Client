@@ -7,22 +7,33 @@ import { toast } from "react-toastify";
 const BuyerProfile = () => {
   const { data: session } = authClient.useSession();
 
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  // const [name, setName] = useState("");
+  // const [image, setImage] = useState("");
 
-  useEffect(() => {
-  if (!session?.user) return;
+const [form, setForm] = useState({
+  name: "",
+  image: "",
+});
 
-  setName(session.user.name ?? "");
-  setImage(session.user.image ?? "");
-}, [session]);
+  const name = form.name || session?.user?.name || "";
+  const image = form.image || session?.user?.image || "";
+
+
+// useEffect(() => {
+//   if (!session?.user) return;
+
+//   setForm({
+//     name: session.user.name ?? "",
+//     image: session.user.image ?? "",
+//   });
+// }, [session]);
 
  const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
     const res = await fetch(
-      `http://localhost:5000/buyer/profile/${session.user.id}`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/buyer/profile/${session.user.id}`,
       {
         method: "PATCH",
         headers: {
@@ -85,7 +96,9 @@ const BuyerProfile = () => {
             className="input input-bordered w-full mt-2"
             value={name}
             onChange={(e) =>
-              setName(e.target.value)
+              setForm((prev)=> ({
+                ...prev, 
+                name: e.target.value,}))
             }
           />
 
@@ -102,7 +115,9 @@ const BuyerProfile = () => {
             className="input input-bordered w-full mt-2"
             value={image}
             onChange={(e) =>
-              setImage(e.target.value)
+              setForm((prev)=> ({
+                ...prev, 
+                image: e.target.value,}))
             }
           />
 

@@ -23,7 +23,7 @@ export default function SellerDashboard() {
 
     axios
       .get(
-        `http://localhost:5000/seller/stats?userId=${userId}`
+        `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/seller/stats?userId=${userId}`
       )
       .then((res) => {
         console.log(res.data);

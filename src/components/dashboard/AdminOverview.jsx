@@ -12,7 +12,7 @@ const AdminOverview = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/dashboard")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/dashboard`)
       .then((res) => res.json())
       .then((data) => setStats(data))
       .catch((err) => console.log(err));

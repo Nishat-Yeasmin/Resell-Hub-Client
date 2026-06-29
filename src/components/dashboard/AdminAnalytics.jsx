@@ -28,7 +28,7 @@ const AdminAnalytics = () => {
   const [analytics, setAnalytics] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/analytics/admin")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/analytics/admin`)
       .then((res) => res.json())
       .then((data) => setAnalytics(data));
   }, []);

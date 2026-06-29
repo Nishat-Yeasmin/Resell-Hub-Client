@@ -12,7 +12,7 @@ const [search, setSearch] = useState("");
 const { data: session } = useSession();
 
 useEffect(() => {
-  const url = `http://localhost:5000/products?search=${search}&category=${category}&condition=${condition}`;
+  const url = `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products?search=${search}&category=${category}&condition=${condition}`;
 
   fetch(url)
     .then((res) => res.json())
@@ -28,7 +28,7 @@ const handleDelete = async (id) => {
 
   if (!confirmDelete) return;
 
-  await fetch(`http://localhost:5000/products/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products/${id}`, {
     method: "DELETE",
   });
 
@@ -51,7 +51,7 @@ const handleEdit = async (product) => {
   };
 
 
-  await fetch(`http://localhost:5000/products/${product._id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products/${product._id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const handleEdit = async (product) => {
 };
 
 const addToWishlist = async (product) => {
-  await fetch("http://localhost:5000/wishlist", {
+  await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/wishlist`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

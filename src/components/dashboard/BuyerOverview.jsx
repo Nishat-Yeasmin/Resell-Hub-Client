@@ -17,7 +17,7 @@ const BuyerOverview = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/buyer/stats?userId=${userId}`
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/buyer/stats?userId=${userId}`
     )
       .then((res) => res.json())
       .then((data) => setStats(data))

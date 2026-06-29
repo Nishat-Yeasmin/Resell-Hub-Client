@@ -15,7 +15,7 @@ export default function OrderDetailsPage({
     const fetchOrder = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/orders/${params.id}`
+          `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/orders/${params.id}`
         );
 
         const data = await res.json();

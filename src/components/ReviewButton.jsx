@@ -23,7 +23,7 @@ export default function ReviewButton({ productId }) {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/reviews", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

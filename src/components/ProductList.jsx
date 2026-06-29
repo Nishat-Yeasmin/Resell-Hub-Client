@@ -17,7 +17,7 @@ const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
 
-    fetch(`http://localhost:5000/products?search=${search}&category=${category}&condition=${condition}&page=${page}&sort=${sort}&limit=6`)
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products?search=${search}&category=${category}&condition=${condition}&page=${page}&sort=${sort}&limit=6`)
       .then(res => res.json())
       .then((data) => { setProducts(data.products);
       setTotalPages(data.totalPages);

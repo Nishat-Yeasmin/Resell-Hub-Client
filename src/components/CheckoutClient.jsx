@@ -22,7 +22,7 @@ export default function CheckoutClient({ product }) {
 
     try {
       // 1. CREATE ORDER
-      const orderRes = await fetch("http://localhost:5000/orders", {
+      const orderRes = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function CheckoutClient({ product }) {
 
       // 2. CREATE PAYMENT INTENT
       const paymentRes = await fetch(
-        "http://localhost:5000/create-payment-intent",
+        `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/create-payment-intent`,
         {
           method: "POST",
           headers: {

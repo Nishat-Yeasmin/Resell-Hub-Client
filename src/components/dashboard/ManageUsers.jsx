@@ -7,7 +7,7 @@ const ManageUsers = () => {
   const [search, setSearch] = useState("");
 
   const loadUsers = () => {
-    fetch("http://localhost:5000/admin/users")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/users`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
   };
@@ -23,7 +23,7 @@ const ManageUsers = () => {
         : "blocked";
 
     await fetch(
-      `http://localhost:5000/admin/users/${id}/status`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/users/${id}/status`,
       {
         method: "PATCH",
         headers: {
@@ -44,7 +44,7 @@ const ManageUsers = () => {
     if (!confirmDelete) return;
 
     await fetch(
-      `http://localhost:5000/admin/users/${id}`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/users/${id}`,
       {
         method: "DELETE",
       }

@@ -13,12 +13,18 @@ export default function Featured() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/products");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/products`);
+
+        console.log("Status:", res.status);
+
         const data = await res.json();
 
+        console.log("Data:", data);
+console.log("Is Array:", Array.isArray(data));
+
         // 🔥 IMPORTANT FIX HERE
-        if (Array.isArray(data)) {
-          setProducts(data);
+        if (Array.isArray(data.products)) {
+          setProducts(data.products);
         } else {
           setProducts([]); // fallback safe array
           console.log("API Error:", data);

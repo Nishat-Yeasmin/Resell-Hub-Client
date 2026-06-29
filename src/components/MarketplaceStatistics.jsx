@@ -14,7 +14,7 @@ const MarketplaceStatistics = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/statistics")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/statistics`)
       .then((res) => res.json())
       .then((data) => setStats(data))
       .catch((err) => console.log(err));

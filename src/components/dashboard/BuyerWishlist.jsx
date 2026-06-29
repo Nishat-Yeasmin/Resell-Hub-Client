@@ -14,7 +14,7 @@ const BuyerWishlist = () => {
 
   const loadWishlist = () => {
     fetch(
-      `http://localhost:5000/wishlist?userId=${userId}`
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/wishlist?userId=${userId}`
     )
       .then((res) => res.json())
       .then((data) => setWishlist(data));
@@ -30,7 +30,7 @@ const BuyerWishlist = () => {
     if (!confirm("Remove this product?")) return;
 
     const res = await fetch(
-      `http://localhost:5000/wishlist/${id}`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/wishlist/${id}`,
       {
         method: "DELETE",
       }

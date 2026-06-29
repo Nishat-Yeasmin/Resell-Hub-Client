@@ -21,7 +21,7 @@ const WishlistButton = ({ product }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/wishlist", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/wishlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

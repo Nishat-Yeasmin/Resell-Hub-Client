@@ -15,7 +15,7 @@ export default function Banner() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/statistics")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/statistics`)
       .then((res) => res.json())
       .then((data) => setStatistics(data))
       .catch((err) => console.log(err));

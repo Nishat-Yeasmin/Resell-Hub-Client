@@ -12,7 +12,7 @@ export default function SellerOrders() {
 
     async function fetchOrders() {
       try {
-        const res = await fetch("http://localhost:5000/seller/orders");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/seller/orders`);
 
         if (!res.ok) {
           throw new Error("Failed to fetch orders");
@@ -43,7 +43,7 @@ export default function SellerOrders() {
   const updateStatus = async (id, status) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/orders/${id}/status`,
+        `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/orders/${id}/status`,
         {
           method: "PATCH",
           headers: {
@@ -60,7 +60,7 @@ export default function SellerOrders() {
 
         // Refresh Orders
         const orderRes = await fetch(
-          "http://localhost:5000/seller/orders"
+          `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/seller/orders`
         );
 
         const orderData = await orderRes.json();

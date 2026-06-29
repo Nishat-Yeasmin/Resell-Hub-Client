@@ -9,7 +9,7 @@ export default function SuccessStories() {
 
   useEffect(()=>{
 
-    fetch("http://localhost:5000/reviews")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/reviews`)
 
     .then(res=>res.json())
 

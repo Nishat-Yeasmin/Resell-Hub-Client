@@ -7,7 +7,7 @@ const ManageProducts = () => {
   const [search, setSearch] = useState("");
 
   const loadProducts = () => {
-    fetch("http://localhost:5000/admin/products")
+    fetch(`${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   };
@@ -18,7 +18,7 @@ const ManageProducts = () => {
 
   const handleStatus = async (id, status) => {
     await fetch(
-      `http://localhost:5000/admin/products/${id}/status`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/products/${id}/status`,
       {
         method: "PATCH",
         headers: {
@@ -35,7 +35,7 @@ const ManageProducts = () => {
     if (!confirm("Delete this product?")) return;
 
     await fetch(
-      `http://localhost:5000/admin/products/${id}`,
+      `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}/admin/products/${id}`,
       {
         method: "DELETE",
       }
