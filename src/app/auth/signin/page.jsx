@@ -52,12 +52,14 @@ export default function SigninPage() {
       });
 
       const data = await res.json();
+
+      console.log("Login response: ", data.user);
       if (!res.ok) {
         setError(data.message || "Signin failed");
         return;
       }
      document.cookie = `role=${data.user.role}; path=/; SameSite=Lax`;
-localStorage.setItem("userId", data.user._id);
+localStorage.setItem("userId", data.user.id);
 localStorage.setItem("role", data.user.role);
 
 setSuccess("Login successful");

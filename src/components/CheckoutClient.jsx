@@ -31,7 +31,7 @@ export default function CheckoutClient({ product }) {
         body: JSON.stringify({
           productId: product._id,
           productTitle: product.title,
-          productImage: product.images?.[0],
+          productImage: product.image,
           quantity: 1,
           totalAmount: product.price,
           buyerInfo: {
@@ -86,7 +86,7 @@ if (!paymentData.clientSecret) {
   return (
     <div className="border p-4 rounded-lg">
       <img
-        src={product.images?.[0]}
+        src={product.image}
         alt={product.title}
         className="w-40 h-40 object-cover rounded-lg"
       />
@@ -111,7 +111,7 @@ if (!paymentData.clientSecret) {
 
       <button
         onClick={handleOrder}
-        className="bg-green-600 text-white px-4 py-2 rounded mt-4"
+        className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded mt-4"
       >
         Proceed To Payment
       </button>
