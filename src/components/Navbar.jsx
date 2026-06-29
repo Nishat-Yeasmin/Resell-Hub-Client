@@ -10,9 +10,8 @@ import { signOut } from "@/lib/auth-client";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-// const {data:session, isPending} = useSession()
-const session = null;
-const isPending = false;
+const {data:session, isPending} = useSession()
+
 console.log("session data is navbar: ",session, "is pending: ", isPending)
 const user = session?.user;
 const handleSignOut = async()=>{
@@ -76,22 +75,37 @@ const handleSignOut = async()=>{
             <div className="h-5 w-px bg-gray-300" />
 
             {/* Login / Register */}
-           {
-            user ?
-             <>
-             Hi, {user.name}!
-             <Button onClick={handleSignOut} variant="ghost">Sign Out</Button>
-            </>:
-             <Link href="/auth/signin" className="text-sm text-blue-600">
-              Login
-            </Link>
-           }
+           {user ? (
+  <div className="flex items-center gap-3">
+    <span className="text-sm font-medium text-white">
+      Hi, {user.name}
+    </span>
 
-           <Link href="/auth/signup">
-  <Button size="sm" color="primary">
-    Register
-  </Button>
-</Link>
+    <Button
+      onClick={handleSignOut}
+      size="sm"
+      color="danger"
+      variant="flat"
+    >
+      Logout
+    </Button>
+  </div>
+) : (
+  <>
+    <Link
+      href="/auth/signin"
+      className="text-sm hover:text-blue-500"
+    >
+      Login
+    </Link>
+
+    <Link href="/auth/signup">
+      <Button size="sm" color="primary">
+        Register
+      </Button>
+    </Link>
+  </>
+)}
 
             {/* Profile Dropdown */}
             <div className="relative bg-gray-800">

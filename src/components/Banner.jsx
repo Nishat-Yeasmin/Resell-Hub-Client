@@ -8,9 +8,9 @@ import Image from "next/image";
 
 export default function Banner() {
    const [statistics, setStatistics] = useState({
-    totalUsers: 0,
+    totalBuyers: 0,
     totalProducts: 0,
-    totalOrders: 0,
+    totalSellers: 0,
     completedOrders: 0,
   });
 
@@ -27,12 +27,12 @@ export default function Banner() {
       label: "Products",
     },
     {
-      number: statistics.totalUsers,
-      label: "Users",
+      number: statistics.totalBuyers,
+      label: "Buyers",
     },
     {
-      number: statistics.totalOrders,
-      label: "Orders",
+      number: statistics.totalSellers,
+      label: "Sellers",
     },
     {
       number: statistics.completedOrders,
