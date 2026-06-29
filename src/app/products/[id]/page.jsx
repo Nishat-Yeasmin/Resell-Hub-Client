@@ -2,6 +2,7 @@ import BuyNowButton from "@/components/BuyNowButton";
 
 import { ObjectId } from "mongodb";
 import WishlistButton from "@/components/WishlistButton";
+import ReviewButton from "@/components/ReviewButton";
 
 export default async function ProductDetails({ params }) {
 
@@ -49,6 +50,7 @@ export default async function ProductDetails({ params }) {
       <div className="flex gap-2 items-center justify-center">
       <WishlistButton product={product} />
       <BuyNowButton product={product}/>
+      <ReviewButton productId={product.id}/>
 
       </div>
       

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import {CircleCheckFill, Persons, FolderArrowDown, FolderArrowUp} from "@gravity-ui/icons"
+import { motion } from "framer-motion";
+
 
 const MarketplaceStatistics = () => {
   const [stats, setStats] = useState({
@@ -58,8 +60,27 @@ const MarketplaceStatistics = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {statistics.map((item, index) => (
-            <div
-              key={index}
+            <motion.div
+            key={index}
+             initial={{
+      opacity: 0,
+      y: 40,
+    }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+    }}
+    viewport={{
+      once: true,
+    }}
+    transition={{
+      duration: 0.5,
+      delay: index * 0.15,
+    }}
+        whileHover={{
+      scale: 1.05,
+      y: -8,
+    }}
               className="bg-indigo-200 rounded-xl shadow-md hover:shadow-xl transition duration-300 p-8 text-center"
             >
               <div
@@ -75,7 +96,7 @@ const MarketplaceStatistics = () => {
               <p className="text-gray-600 font-medium">
                 {item.title}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

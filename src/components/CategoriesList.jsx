@@ -6,28 +6,23 @@ const categories=[
 
 {
 name:"Electronics",
-image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWxlY3Ryb25pY3N8ZW58MHx8MHx8fDA%3D"
 },
 
 {
 name:"Fashion",
-image:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500"
+image:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fHww"
 },
 
 {
-name:"Home",
-image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500"
+name:"Book",
+image:"https://images.unsplash.com/photo-1694730750153-8b66cf3dd014?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3N8ZW58MHx8MHx8fDA%3D"
 },
 
 {
-name:"Sports",
-image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500"
+name:"Furniture",
+image:"https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D"
 },
-
-{
-name:"Beauty",
-image:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500"
-}
 
 ];
 
